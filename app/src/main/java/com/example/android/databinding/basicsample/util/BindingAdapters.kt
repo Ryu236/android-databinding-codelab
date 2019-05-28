@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package com.example.android.databinding.basicsample.util
 
 import android.content.Context
@@ -23,6 +25,7 @@ import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
@@ -67,6 +70,20 @@ fun tintPopularity(view: ProgressBar, popularity: Popularity) {
 fun setProgress(progressBar: ProgressBar, likes: Int, max: Int) {
     progressBar.progress = (likes * max / 5).coerceAtMost(max)
 }
+//
+//@BindingAdapter("android:text")
+//fun setText(view: TextView, text: CharSequence) {
+//    view.setText(text)
+//}
+
+//@BindingAdapter("android:background")
+//fun setBackground(view: View, drawable: Drawable) {
+//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//        view.setBackground(drawable)
+//    } else {
+//        view.setBackgroundDrawable(drawable)
+//    }
+//}
 
 /**
  * Unused Binding Adapter to replace the Binding Converter that hides a view if the number
@@ -80,7 +97,7 @@ fun hideIfZero(view: View, number: Int) {
 private fun getAssociatedColor(popularity: Popularity, context: Context): Int {
     return when (popularity) {
         Popularity.NORMAL -> context.theme.obtainStyledAttributes(
-            intArrayOf(android.R.attr.colorForeground)
+                intArrayOf(android.R.attr.colorForeground)
         ).getColor(0, 0x000000)
         Popularity.POPULAR -> ContextCompat.getColor(context, R.color.popular)
         Popularity.STAR -> ContextCompat.getColor(context, R.color.star)
